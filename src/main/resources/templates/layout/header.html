@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="nav">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+                       th:href="@{/}">dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/account' ? 'active':''}"
+                       th:href="@{/account}">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.getRequestURI() == '/board' ? 'active':''}"
+                       th:href="@{/board}">Board</a>
+                </li>
+            </ul>
+            <p></p>
+        </div>
+    </body>
+</html>

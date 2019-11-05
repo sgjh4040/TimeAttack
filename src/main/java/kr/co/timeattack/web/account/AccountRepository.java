@@ -9,6 +9,6 @@ public interface AccountRepository {
     AccountModel findById(Long id);
     void create(AccountModel m );
     void update(AccountModel m);
-    void delete(long id);
+    void delete(Long id);
 
 }

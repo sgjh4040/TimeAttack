@@ -34,7 +34,7 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
 
     }
 }

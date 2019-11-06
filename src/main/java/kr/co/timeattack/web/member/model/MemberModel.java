@@ -1,5 +1,6 @@
 package kr.co.timeattack.web.member.model;
 
+import kr.co.timeattack.web.member.dto.MemberDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,20 @@ public class MemberModel {
     private String memberBirth;
     private String memberRegDate;
     private String delYn;
+
+    public MemberDto toDto() {
+        return new MemberDto(
+                memberId,
+                memberEmail,
+                memberPassword,
+                memberNickname,
+                snsYn, memberPh,
+                zipCode,
+                address1,
+                address2,
+                memberBirth,
+                memberRegDate,
+                delYn);
+    }
 
 }

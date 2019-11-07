@@ -2,20 +2,18 @@ package kr.co.timeattack.web.account.model;
 
 
 import kr.co.timeattack.web.account.dto.AccountDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class AccountModel {
     private Long id;
-    private String username;
-    private String password;
+    @NonNull private String username;
+    @NonNull private String password;
 
-    public AccountDto toDto(){return new AccountDto(id,username,password);}
+    public AccountDto toDto(){return new AccountDto(username,password);}
 
 }

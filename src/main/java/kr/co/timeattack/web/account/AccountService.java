@@ -2,6 +2,7 @@ package kr.co.timeattack.web.account;
 
 import kr.co.timeattack.web.account.dto.AccountDto;
 import kr.co.timeattack.web.account.model.AccountModel;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class AccountService {
-    @Autowired AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     public List<AccountDto> list(){
         List<AccountModel> list = accountRepository.list();

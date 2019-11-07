@@ -1,10 +1,7 @@
 package kr.co.timeattack.web.member.model;
 
 import kr.co.timeattack.web.member.dto.MemberDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -12,11 +9,12 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberModel {
     private Long memberId;
-    private String memberEmail;
-    private String memberPassword;
-    private String memberNickname;
+    @NonNull private String memberEmail;
+    @NonNull private String memberPassword;
+    @NonNull private String memberNickname;
     private String snsYn;
     private String memberPh;
     private String zipCode;

@@ -15,9 +15,16 @@ public class GoodRepositoryImpl implements GoodRepository {
     }
 
     @Override
+    public List<GoodModel> selectGoodsList(String goodsStatus) {
+        return null;
+    }
+
+    @Override
     public GoodModel findById(Long id) {
         return null;
     }
+
+
 
     @Override
     public void create(GoodModel m) {
@@ -33,4 +40,5 @@ public class GoodRepositoryImpl implements GoodRepository {
     public void delete(GoodModel m) {
 
     }
+
 }

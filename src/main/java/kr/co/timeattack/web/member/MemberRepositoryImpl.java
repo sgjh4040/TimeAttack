@@ -1,10 +1,12 @@
 package kr.co.timeattack.web.member;
 
 import kr.co.timeattack.web.member.model.MemberModel;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class MemberRepositoryImpl implements MemberRepository {
     private List<MemberModel> list = new ArrayList<>();
 
@@ -15,7 +17,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public MemberModel findbyId(Long id) {
-        return null;
+        return new MemberModel();
     }
 
     @Override

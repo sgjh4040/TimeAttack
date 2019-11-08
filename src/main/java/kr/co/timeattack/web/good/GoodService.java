@@ -35,5 +35,7 @@ public class GoodService {
 
     }
 
+    //
+
     public void create(GoodDto dto){goodRepository.create(dto.toModel());}
 }

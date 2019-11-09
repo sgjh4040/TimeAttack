@@ -18,7 +18,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public ModelAndView member(){
-        ModelAndView mv = new ModelAndView("member/login");
+        ModelAndView mv = new ModelAndView("login/login");
         return mv;
     }
 

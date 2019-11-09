@@ -39,5 +39,13 @@ public class CartController {
         }
     }
 
+    @PostMapping("/cart/remove")
+    public ModelAndView removeCartGoods(){
+        ModelAndView mav = new ModelAndView();
+        cartService.removeCartGoods('1');
+        mav.setViewName("redirect:/cart");
+        return mav;
+    }
+
 
 }

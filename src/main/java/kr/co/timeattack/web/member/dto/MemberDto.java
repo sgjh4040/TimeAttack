@@ -7,13 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Size;
+import java.util.Set;
+
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDto {
-    private Long memberId;
+    private long memberId;
     private String memberEmail;
+    @Size(min=5, max=20, message = "password는 5 ~ 20 글자 범위에서 입력해주세요")
     private String memberPassword;
     private String memberNickname;
     private String snsYn;
@@ -24,6 +28,8 @@ public class MemberDto {
     private String memberBirth;
     private String memberRegDate;
     private String delYn;
+    @Size(min = 1, message = "role은 최소 1개 이상 선택해주세요.")
+    private Set<String> roles;
 
     public MemberModel toModel() {
         return new MemberModel(
@@ -31,12 +37,14 @@ public class MemberDto {
                 memberEmail,
                 memberPassword,
                 memberNickname,
-                snsYn, memberPh,
+                snsYn,
+                memberPh,
                 zipCode,
                 address1,
                 address2,
                 memberBirth,
                 memberRegDate,
-                delYn);
+                delYn,
+                roles);
     }
 }

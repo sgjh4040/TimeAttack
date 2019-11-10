@@ -1,10 +1,14 @@
 package kr.co.timeattack.web.good;
 
 import kr.co.timeattack.web.good.model.GoodModel;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
+@AllArgsConstructor
 public class GoodRepositoryImpl implements GoodRepository {
 
     private List<GoodModel> list = new ArrayList<>();

@@ -22,6 +22,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public void create(MemberModel m) {
+        this.list.add(m);
 
     }
 

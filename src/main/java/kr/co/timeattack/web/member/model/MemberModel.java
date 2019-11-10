@@ -4,16 +4,18 @@ import kr.co.timeattack.web.member.dto.MemberDto;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
+@ToString
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class MemberModel {
-    private Long memberId;
+    private long memberId;
     @NonNull private String memberEmail;
-    @NonNull private String memberPassword;
+    @NonNull  private String memberPassword;
     @NonNull private String memberNickname;
     private String snsYn;
     private String memberPh;
@@ -23,6 +25,8 @@ public class MemberModel {
     private String memberBirth;
     private String memberRegDate;
     private String delYn;
+    @NonNull private Set<String> roles;
+
 
     public MemberDto toDto() {
         return new MemberDto(
@@ -36,7 +40,8 @@ public class MemberModel {
                 address2,
                 memberBirth,
                 memberRegDate,
-                delYn);
+                delYn,
+                roles);
     }
 
 }

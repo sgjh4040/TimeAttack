@@ -2,16 +2,20 @@ package kr.co.timeattack.web.good;
 
 import kr.co.timeattack.web.good.dto.GoodDto;
 import kr.co.timeattack.web.good.model.GoodModel;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
 public class GoodService {
 
-    @Autowired GoodRepository goodRepository;
+    private GoodRepository goodRepository;
 
     public List<GoodDto> list(){
         List<GoodModel> list = goodRepository.list();

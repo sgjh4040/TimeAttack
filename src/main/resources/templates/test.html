@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Book Time</title>
+</head>
+<body>
+<div class="container">
+    <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
+    <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
+    <div class="row mb-2">
+        <div class="col-md-6" th:each="good: ${goodlist}">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary" th:text="${good.sort}"></strong>
+                    <h3 class="mb-0" th:text="${good.title}"></h3>
+                    <div class="mb-1 text-muted" th:text="${good.publishedDate}"></div>
+                    <p class="card-text mb-auto" th:text="${good.intro}"></p>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+
+<th:block th:insert="~{layout/common :: script}"></th:block>
+</body>
+</html>

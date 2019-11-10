@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Account List</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8">
+            <th:block th:insert="~{layout/common :: nav}"></th:block>
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="/account">Account</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Create</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <h2>Account Create</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form th:action="@{/account/create}" method="post" th:object="${account}" >
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter username" th:field="*{username}">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password" th:field="*{password}">
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary">submit</button>
+                                <a class="btn btn-danger" th:href="@{/account/list}">list</a>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- TODO  th:object th:field  -->
+                    <!-- TODO  error message  -->
+                    <!-- TODO  role  -->
+               </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:insert="~{layout/common :: copy}"></th:block>
+</div>
+
+<th:block th:insert="~{layout/common :: script}"></th:block>
+</body>
+</html>

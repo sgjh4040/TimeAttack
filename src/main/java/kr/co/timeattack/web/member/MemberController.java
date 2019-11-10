@@ -1,6 +1,7 @@
 package kr.co.timeattack.web.member;
 
 import kr.co.timeattack.web.member.dto.MemberDto;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,42 +14,44 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
+@AllArgsConstructor
 public class MemberController {
-    @Autowired MemberService memberService;
+    private MemberService memberService;
 
-    @GetMapping("/login")
-    public ModelAndView member(){
-        ModelAndView mv = new ModelAndView("login/login");
-        return mv;
-    }
+//    @GetMapping("/login")
+//    public ModelAndView member(){
+//        ModelAndView mv = new ModelAndView("login/login");
+//        return mv;
+//    }
 
     /**
      * 로그인
      * @param id
      * **/
-    @PostMapping("/login")
-    public ModelAndView login(Long id){
-        ModelAndView mv =new ModelAndView("redirect:/main");
-        memberService.login(id);
-        return mv;
-    }
+//    @PostMapping("/login")
+//    public ModelAndView login(Long id){
+//        ModelAndView mv =new ModelAndView("redirect:/main");
+//        memberService.login(id);
+//        return mv;
+//    }
     /**
      *
      * **/
-    @GetMapping("/register")
-    public ModelAndView register(){
-        ModelAndView mv = new ModelAndView("member/register");
+    @GetMapping("/member/create")
+    public ModelAndView register(Model m){
+        ModelAndView mv = new ModelAndView("member/create");
+        m.addAttribute("member", new MemberDto());
         return mv;
     }
-    @PostMapping("member/register")
+    @PostMapping("member/create")
     public ModelAndView createPost(@ModelAttribute("member") @Valid MemberDto dto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            ModelAndView mv = new ModelAndView("member/register");
+            ModelAndView mv = new ModelAndView("member/create");
             mv.addObject("member",dto);
             return mv;
         }else{
             memberService.create(dto);
-            return new ModelAndView("redirect:/main");
+            return new ModelAndView("redirect:/");
         }
 
 

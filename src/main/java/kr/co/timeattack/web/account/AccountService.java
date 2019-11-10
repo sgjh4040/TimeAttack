@@ -4,6 +4,8 @@ import kr.co.timeattack.web.account.dto.AccountDto;
 import kr.co.timeattack.web.account.model.AccountModel;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +23,10 @@ public class AccountService {
     }
     public void create(AccountDto dto){
         accountRepository.create(dto.toModel());
+    }
+
+    public Page<AccountDto> page(Pageable pageable) {
+        Page<AccountModel> page = accountRepository.findAll(pageable);
+        return page.map(AccountModel::toDto);
     }
 }

@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{layout/common :: head}"></div>
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+    <title>회원가입</title>
+</head>
+<body class="text-center">
+<form class="form-signin" name="f" th:action="@{/member/create}" method="post" th:object="${member}">
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+    </div>
+    <img class="mb-4" src="https://cdn1.vectorstock.com/i/1000x1000/74/40/education-open-book-icon-vector-10187440.jpg"
+         alt="" width="72"
+         height="72">
+    <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="text" id="inputEmail" name="memberEmail" class="form-control" placeholder="Email address" required
+           autofocus>
+    <label for="inputNickname" class="sr-only">닉네임</label>
+    <input type="text" id="inputNickname" name="memberNickname" class="form-control" placeholder="닉네임"
+           th:field="*{memberNickname}" required>
+    <label for="inputPassword" class="sr-only">비밀번호</label>
+    <input type="password" id="inputPassword" name="memberPassword" class="form-control" placeholder="Password"
+           th:field="*{memberPassword}" required>
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">회원 등록</button>
+
+    <div th:include="~{layout/common :: copy}" th:remove="tag"></div>
+    <select style="display:none" id="tags" name="roles" multiple="multiple">
+        <option value="USER" selected>
+            유저
+        </option>
+        <option value="ADMIN">
+            관리자
+        </option>
+    </select>
+</form>
+
+<div th:insert="~{layout/common :: script}"></div>
+
+</body>
+</html>

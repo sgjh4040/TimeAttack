@@ -16,7 +16,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public MemberModel findbyId(Long id) {
+    public MemberModel findbyEmail(String email) {
         return new MemberModel();
     }
 

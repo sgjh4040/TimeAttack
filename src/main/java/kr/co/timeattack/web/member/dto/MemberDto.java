@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDto {
-    private long memberId;
+    private int memberId;
     private String memberEmail;
     @Size(min=5, max=20, message = "password는 5 ~ 20 글자 범위에서 입력해주세요")
     private String memberPassword;

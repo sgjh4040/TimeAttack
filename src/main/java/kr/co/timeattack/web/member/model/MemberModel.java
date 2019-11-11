@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class MemberModel {
-    private long memberId;
+    private int memberId;
     @NonNull private String memberEmail;
     @NonNull  private String memberPassword;
     @NonNull private String memberNickname;

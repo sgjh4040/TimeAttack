@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface MemberRepository {
     List<MemberModel> list();
-    MemberModel findbyId(Long id);
+    MemberModel findbyEmail(String email);
 
     void create(MemberModel m);
     void update(MemberModel m);

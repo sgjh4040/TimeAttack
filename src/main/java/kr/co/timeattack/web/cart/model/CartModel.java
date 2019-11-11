@@ -7,17 +7,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartModel {
-    private Long cartId;
-    private Long goodId;
-    private Long memberId;
-    private Long cardNum;
+    private int cartId;
+    private int goodId;
+    private int memberId;
+    private int cartNum;
+    private Date creDate;
 
-    public CartDto toDto(){return new CartDto(cartId,goodId,memberId,cardNum);}
+    public CartDto toDto(){return new CartDto(cartId,goodId,memberId,cartNum,creDate);}
 
 
 }

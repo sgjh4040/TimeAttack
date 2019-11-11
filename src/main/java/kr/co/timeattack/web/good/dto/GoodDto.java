@@ -11,42 +11,46 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodDto {
-    private long id;
-    private String sort;
-    private String title;
-    private String writer;
-    private String publisher;
-    private long price;
-    private long salesPrice;
-    private long point;
-    private Date publishedDate;
-    private long totalPage;
-    private String isbn;
-    private long deliveryPrice;
-    private String status;
-    private String intro;
-    private String publisherComment;
-    private String contentsOrder;
+    private String goodsId;
+    private String goodsTitle;
+    private String goodsWriter;
+    private int goodsPrice;
+    private String goodsPublisher;
+    private String goodsSort;
+    private int goodsSalesPrice;
+    private int goodsPoint;
+    private Date goodsPublishedDate;
+    private int goodsTotalPage;
+    private String goodsIsbn;
+    private String goodsDeliveryPrice;
+    private String goodsDeliveryDate;
+    private String goodsFilename;
+    private String goodsStatus;
+    private String goodsIntro;
+    private String goodsContentsOrder;
+    private Date goodsCredate;
 
 
     public GoodModel toModel() {
         return new GoodModel(
-                id,
-                sort,
-                title,
-                writer,
-                publisher,
-                price,
-                salesPrice,
-                point,
-                publishedDate,
-                totalPage,
-                isbn,
-                deliveryPrice,
-                status,
-                intro,
-                publisherComment,
-                contentsOrder
+                goodsId,
+                goodsTitle,
+                goodsWriter,
+                goodsPrice,
+                goodsPublisher,
+                goodsSort,
+                goodsSalesPrice,
+                goodsPoint,
+                goodsPublishedDate,
+                goodsTotalPage,
+                goodsIsbn,
+                goodsDeliveryPrice,
+                goodsDeliveryDate,
+                goodsFilename,
+                goodsStatus,
+                goodsIntro,
+                goodsContentsOrder,
+                goodsCredate
         );
     }
 }

@@ -49,9 +49,11 @@ public class CartService {
         cartRepository.insertGoodsInCart(dto.toModel());
     }
 
-    //장바구니 수정
-    public void modifyCart(CartDto dto) {
-        cartRepository.updateCartGoods(dto.toModel());
+    //장바구니 개수 수정
+    public boolean modifyCartQty(CartDto dto) {
+        boolean result = true;
+        cartRepository.updateCartGoodsQty(dto.toModel());
+        return result;
     }
 
     //장바구나 삭제

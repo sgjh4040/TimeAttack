@@ -10,7 +10,7 @@ public interface CartRepository {
     public List<CartModel> selectCartList(CartModel m);
     public List<GoodModel> selectGoodList(List<CartModel> cartList);
     void insertGoodsInCart(CartModel m);
-    void updateCartGoods(CartModel m);
+    void updateCartGoodsQty(CartModel m);
     void deleteCartGoods(int cartId );
     boolean selectCountInCart(CartModel m);
 

@@ -36,7 +36,7 @@ public class CartRepositoryImpl implements CartRepository {
     }
 
     @Override
-    public void updateCartGoods(CartModel m) {
+    public void updateCartGoodsQty(CartModel m) {
         this.list.add(m);
     }
 

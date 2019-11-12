@@ -18,8 +18,8 @@ public class CartDto {
     private int cartId;
     private int goodId;
     private int memberId;
-    private int cartNum;
+    private int cartGoodqty;
     private Date creDate;
 
-    public CartModel toModel(){return new CartModel(cartId,goodId,memberId,cartNum,creDate);}
+    public CartModel toModel(){return new CartModel(cartId,goodId,memberId,cartGoodqty,creDate);}
 }

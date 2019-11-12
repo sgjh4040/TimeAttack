@@ -17,10 +17,10 @@ public class CartModel {
     private int cartId;
     private int goodId;
     private int memberId;
-    private int cartNum;
+    private int cartGoodqty;
     private Date creDate;
 
-    public CartDto toDto(){return new CartDto(cartId,goodId,memberId,cartNum,creDate);}
+    public CartDto toDto(){return new CartDto(cartId,goodId,memberId,cartGoodqty,creDate);}
 
 
 }

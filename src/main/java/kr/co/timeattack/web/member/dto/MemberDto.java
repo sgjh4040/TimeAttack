@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class MemberDto {
     private int memberId;
+    @Email(message = "email 형식을 지켜주세요")
     private String memberEmail;
     @Size(min=5, max=20, message = "password는 5 ~ 20 글자 범위에서 입력해주세요")
     private String memberPassword;

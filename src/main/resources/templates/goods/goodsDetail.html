@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Book Time</title>
+</head>
+<body>
+<div class="container">
+    <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
+    <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
+    <div class="row mb-2">
+        <div  th:text="${good.good.goodsId}"></div>
+
+
+
+
+    </div>
+</div>
+
+
+</div>
+
+
+<th:block th:insert="~{layout/common :: script}"></th:block>
+</body>
+</html>

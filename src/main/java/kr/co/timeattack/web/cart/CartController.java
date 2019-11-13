@@ -6,6 +6,7 @@ import kr.co.timeattack.web.member.MemberService;
 import kr.co.timeattack.web.member.dto.MemberDto;
 import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 @Controller
 @AllArgsConstructor
+@NoArgsConstructor
 public class CartController {
 
     private CartService cartService;

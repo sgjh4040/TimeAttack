@@ -41,12 +41,9 @@ public class InitComponent implements CommandLineRunner {
         repository.create(member);
 
         Date now = new Date();
-//        GoodModel good = new GoodModel(1, "소설", "개미", "사공정훈", "동아", 3000, 4000, 10, new Date(), 500, "dff1225566", 1000, "bestseller", "인트로", "출판서 코멘트", "상품 목차");
-//        goodRepository.create(good);
-//        good = new GoodModel(2, "판타지", "퇴마록", "사공", "천재", 3400, 4000, 10, new Date(), 500, "dff1225566", 1000, "bestseller", "인트로", "출판서 코멘트", "상품 목차");
-//        goodRepository.create(good);
-//        good = new GoodModel(3, "소설", "개미", "사공정훈", "동아", 3000, 4000, 10, new Date(), 500, "dff1225566", 1000, "bestseller", "인트로", "출판서 코멘트", "상품 목차");
-//        goodRepository.create(good);
+        GoodModel good = new GoodModel(1, "소설", "개미", 3000, "동아", "소설", 2500, 50, "20191020", 500, "dff1225566", 1000, "20191120", "file", "bestseller", "상품 소개","목차","20191020");
+        goodRepository.test(good);
+
 
         System.out.println(member.toString());
 //        System.out.println(good.toString());

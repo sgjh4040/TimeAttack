@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodModel {
-    private String goodsId;
+    private int goodsId;
     private String goodsTitle;
     private String goodsWriter;
     private int goodsPrice;
@@ -19,16 +19,16 @@ public class GoodModel {
     private String goodsSort;
     private int goodsSalesPrice;
     private int goodsPoint;
-    private Date goodsPublishedDate;
+    private String goodsPublishedDate;
     private int goodsTotalPage;
     private String goodsIsbn;
-    private String goodsDeliveryPrice;
+    private int goodsDeliveryPrice;
     private String goodsDeliveryDate;
     private String goodsFilename;
     private String goodsStatus;
     private String goodsIntro;
     private String goodsContentsOrder;
-    private Date goodsCredate;
+    private String goodsCredate;
 
     public GoodDto toDto() {
         return new GoodDto(

@@ -17,10 +17,11 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class AdminMemberService {
     AdminMemberRepository adminMemberRepository;
-    public ArrayList<MemberDto> listMember(HashMap cond){
+    public List<MemberDto> listMember(HashMap cond){
 
         List<MemberModel> list = adminMemberRepository.listMember(cond);
         return list.stream().map(x -> x.toDto()).collect(Collectors.toList());
+
     }
 
     public MemberDto memberDetail(int memberId){

@@ -1,17 +1,18 @@
-package kr.co.timeattack.web.order.dto;
+package kr.co.timeattack.web.order.model;
 
 
-import kr.co.timeattack.web.order.model.OrderModel;
+import kr.co.timeattack.web.order.dto.OrderDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
+public class OrderModel {
+
     private int orderSeqNum;
     private int memberId;
     private int orderId;
@@ -43,36 +44,36 @@ public class OrderDto {
     private String goodsFileName;
     private String ordererHp;
 
-    public OrderModel toModel(){
-        return new OrderModel(
-                orderSeqNum,
-                memberId,
-                orderId,
-                goodsId,
-                goodsTitle,
-                goodsSalesPrice,
-                totalGoodsPrice,
-                cartGoodsQty,
-                orderGoodsQty,
-                ordererName,
-                receiverName,
-                receiverHp1,
-                receiverHp2,
-                receiverTel1,
-                receiverTel2,
-                deliveryAddress,
-                deliveryMessage,
-                deliveryMethod,
-                giftWrapping,
-                payMethod,
-                cardComName,
-                cardPayMonth,
-                payOrdererHpnum,
-                deliveryState,
-                finalTotalPrice,
-                goodsQty,
-                goodsFileName,
-                ordererHp
+    public OrderDto toDto(){
+        return new OrderDto(
+        orderSeqNum,
+        memberId,
+        orderId,
+        goodsId,
+        goodsTitle,
+        goodsSalesPrice,
+        totalGoodsPrice,
+        cartGoodsQty,
+        orderGoodsQty,
+        ordererName,
+        receiverName,
+        receiverHp1,
+        receiverHp2,
+        receiverTel1,
+        receiverTel2,
+        deliveryAddress,
+        deliveryMessage,
+        deliveryMethod,
+        giftWrapping,
+        payMethod,
+        cardComName,
+        cardPayMonth,
+        payOrdererHpnum,
+        deliveryState,
+        finalTotalPrice,
+        goodsQty,
+        goodsFileName,
+        ordererHp
         );
     }
 }

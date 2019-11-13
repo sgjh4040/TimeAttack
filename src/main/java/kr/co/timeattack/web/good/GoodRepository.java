@@ -15,10 +15,13 @@ public interface GoodRepository {
     //키워드 검색
     List<String> selectKeywordSearch(String keyword);
     //ID 로 검색
-    GoodModel selectGoodsDetail(String id);
+    GoodModel selectGoodsDetail(int id);
 
     //책 이미지 검색
     List<ImageFileModel> selectGoodsDetailImage(int id);
     List<GoodModel> selectGoodsBySearchWord(String searchWord);
+
+    //test
+    void test(GoodModel model);
 
 }

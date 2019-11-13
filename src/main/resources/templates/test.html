@@ -10,19 +10,22 @@
     <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
 
     <div class="row mb-2">
-        <div class="col-md-6" th:each="good: ${goodlist}">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary" th:text="${good.sort}"></strong>
-                    <h3 class="mb-0" th:text="${good.title}"></h3>
-                    <div class="mb-1 text-muted" th:text="${good.publishedDate}"></div>
-                    <p class="card-text mb-auto" th:text="${good.intro}"></p>
+
+            <div class="col-md-6" th:each="good: ${goodlist}">
+                <a href="/goods?id=1">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${good.goodsSort}"></strong>
+                        <h3 class="mb-0" th:text="${good.goodsTitle}"></h3>
+                        <div class="mb-1 text-muted" th:text="${good.goodsPublishedDate}"></div>
+                        <p class="card-text mb-auto" th:text="${good.goodsIntro}"></p>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
+                    </div>
                 </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
-                </div>
+                </a>
             </div>
-        </div>
 
     </div>
 </div>

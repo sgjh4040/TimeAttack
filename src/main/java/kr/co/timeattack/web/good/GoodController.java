@@ -27,12 +27,14 @@ public class GoodController {
 
 
     //상품 디테일 페이
-    @GetMapping("/good")
-    public ModelAndView goodDetail(@RequestParam("goodid") String goodId, HttpServletRequest request){
+    @GetMapping("/goods")
+    public ModelAndView goodDetail(@RequestParam("id") String goodId, HttpServletRequest request){
 
+        System.out.println("goodId:"+goodId);
         ModelAndView mv = new ModelAndView("goods/goodsDetail");
         HttpSession session=request.getSession();
-        Map goodsMap = goodService.goodsDetail(goodId);
+        Map goodsMap = goodService.goodsDetail(Integer.parseInt(goodId));
+        System.out.println("goodsMap"+goodsMap);
         mv.addObject("good",goodsMap);
         GoodModel goodmodel = (GoodModel) goodsMap.get("good");
         addGoodsInQuick(goodId,goodmodel,session);

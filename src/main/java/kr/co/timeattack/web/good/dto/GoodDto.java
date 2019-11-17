@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodDto {
-    private int goodsId;
+    private Long goodsId;
     private String goodsTitle;
     private String goodsWriter;
     private int goodsPrice;
@@ -31,26 +31,5 @@ public class GoodDto {
     private String goodsCredate;
 
 
-    public GoodModel toModel() {
-        return new GoodModel(
-                goodsId,
-                goodsTitle,
-                goodsWriter,
-                goodsPrice,
-                goodsPublisher,
-                goodsSort,
-                goodsSalesPrice,
-                goodsPoint,
-                goodsPublishedDate,
-                goodsTotalPage,
-                goodsIsbn,
-                goodsDeliveryPrice,
-                goodsDeliveryDate,
-                goodsFilename,
-                goodsStatus,
-                goodsIntro,
-                goodsContentsOrder,
-                goodsCredate
-        );
-    }
+
 }

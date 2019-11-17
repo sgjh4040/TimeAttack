@@ -17,7 +17,7 @@ public class CartDto {
 
     private int cartId;
     private int goodId;
-    private int memberId;
+    private Long memberId;
     private int cartGoodqty;
     private Date creDate;
 

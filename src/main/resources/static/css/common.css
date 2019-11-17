@@ -57,12 +57,12 @@
 }
 
 .flex-auto {
-  flex: 0 0 auto;
+  flex: 0 0 auto;container
 }
 
 .h-250 { height: 250px; }
 @media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
+  .h-md-250 {  }
 }
 
 /* Pagination */

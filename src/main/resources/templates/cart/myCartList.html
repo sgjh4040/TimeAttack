@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Book Time</title>
+</head>
+<body>
+<link rel="stylesheet" th:href="@{/static/css/goodDetail.css}">
+<div class="container">
+    <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
+    <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+<th:block th:insert="~{layout/common :: script}"></th:block>
+</body>
+</html>
+

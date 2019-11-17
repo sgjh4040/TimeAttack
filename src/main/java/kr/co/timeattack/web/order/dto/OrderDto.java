@@ -12,9 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto {
-    private int orderSeqNum;
+    Long id;
     private int memberId;
-    private int orderId;
     private int goodsId;
     private String goodsTitle;
     private int goodsSalesPrice;
@@ -43,36 +42,5 @@ public class OrderDto {
     private String goodsFileName;
     private String ordererHp;
 
-    public OrderModel toModel(){
-        return new OrderModel(
-                orderSeqNum,
-                memberId,
-                orderId,
-                goodsId,
-                goodsTitle,
-                goodsSalesPrice,
-                totalGoodsPrice,
-                cartGoodsQty,
-                orderGoodsQty,
-                ordererName,
-                receiverName,
-                receiverHp1,
-                receiverHp2,
-                receiverTel1,
-                receiverTel2,
-                deliveryAddress,
-                deliveryMessage,
-                deliveryMethod,
-                giftWrapping,
-                payMethod,
-                cardComName,
-                cardPayMonth,
-                payOrdererHpnum,
-                deliveryState,
-                finalTotalPrice,
-                goodsQty,
-                goodsFileName,
-                ordererHp
-        );
-    }
+
 }

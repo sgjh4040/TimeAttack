@@ -20,7 +20,6 @@ public class MainController {
         ModelAndView mv = new ModelAndView("/test");
         System.out.println("시작");
         List<GoodDto> list= goodService.list();
-        System.out.println("list:"+list.get(0).toString());
         mv.addObject("goodlist",list);
         return mv;
     }

@@ -1,5 +1,6 @@
 package kr.co.timeattack.web.cart;
 
+import com.sun.tools.jconsole.JConsoleContext;
 import kr.co.timeattack.web.cart.dto.CartDto;
 import kr.co.timeattack.web.member.MemberRepository;
 import kr.co.timeattack.web.member.MemberService;
@@ -7,6 +8,8 @@ import kr.co.timeattack.web.member.dto.MemberDto;
 import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.awt.*;
 import java.security.Principal;
 import java.sql.ResultSet;
 import java.util.List;
@@ -23,21 +27,21 @@ import java.util.Map;
 
 @Controller
 @AllArgsConstructor
-@NoArgsConstructor
 public class CartController {
 
     private CartService cartService;
     private MemberRepository memberRepository;
-    private CartDto cartDto;
-    private MemberDto memberDto;
 
     //장바구니 리스트
     @GetMapping("cart/list")
     public ModelAndView myCartMain(HttpServletRequest request, Principal principal) {
+        CartDto cartDto = new CartDto();
         String userEmail = principal.getName();
-        ModelAndView mv = new ModelAndView("cart/list");
+        ModelAndView mv = new ModelAndView("cart/myCartList");
         HttpSession session = request.getSession();
-        int userId = memberRepository.findbyEmail(userEmail).getMemberId();
+        Long userId = memberRepository.findByMemberEmail(userEmail).get().getId();
+
+        System.out.println(userId);
         cartDto.setMemberId(userId);
         Map<String, List> cartMap = cartService.myCartList(cartDto);
         session.setAttribute("cartMap", cartMap);
@@ -55,6 +59,7 @@ public class CartController {
             return mv;
         } else {
 
+            CartDto cartDto = new CartDto();
             boolean isAreadyExist = cartService.findCartGoods(cartDto);
 
             if (isAreadyExist) {
@@ -75,7 +80,9 @@ public class CartController {
                       @RequestParam("cartGoodqty") int cartGoodqty,Principal principal,
                       HttpServletRequest request) {
         String userEmail = principal.getName();
-        int userId = memberRepository.findbyEmail(userEmail).getMemberId();
+        Long userId = memberRepository.findByMemberEmail(userEmail).get().getId();
+
+        CartDto cartDto = new CartDto();
         cartDto.setGoodId(goodId);
         cartDto.setMemberId(userId);
         cartDto.setCartGoodqty(cartGoodqty);

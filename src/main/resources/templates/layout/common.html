@@ -8,15 +8,32 @@
             <link rel="stylesheet" th:href="@{/static/css/common.css}">
         </div>
         <div th:fragment="header">
-            <header class="page-header py-3">
+            <header class="page-header py-3" >
+                <div class="col-12">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/cart/list}">장바구니</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">주문배송</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">고객센터</a>
+                        </li>
+
+
+                    </ul>
+                </div>
                 <div class="row flex-nowrap justify-content-between align-items-center">
                     <div class="col-4 pt-1">
-                        <a class="text-muted" href="#">골라골</a>
+                        <a class="text-muted" href="#">도서</a>
                     </div>
                     <div class="col-4 text-center">
                         <a class="page-header-logo text-dark" href="/">Book Time</a>
                     </div>
+
                     <div class="col-4 d-flex justify-content-end align-items-center">
+
                         <div sec:authorize="isAnonymous()">
                             <a class="btn btn-sm btn-outline-secondary" th:href="@{/member/create}">회원가입</a>
                             <a class="btn btn-sm btn-outline-success" th:href="@{/login}">로그인</a>
@@ -32,6 +49,14 @@
         </div>
         <div th:fragment="nav">
             <div class="nav-scroller py-1 mb-2">
+                <div sec:authorize="isAnonymous()">
+                    <nav class="nav d-flex justify-content-between">
+                        <a class="p-2 text-muted" href="#">신간</a>
+                        <a class="p-2 text-muted" href="#">베스트셀러</a>
+                        <a class="p-2 text-muted" href="#">스테디셀러</a>
+                        <a class="p-2 text-muted" href="#">Design</a>
+                    </nav>
+                </div>
                 <div sec:authorize="hasRole('USER')">
                     <nav class="nav d-flex justify-content-between">
                         <a class="p-2 text-muted" href="#">신간</a>
@@ -44,7 +69,7 @@
                     <nav class="nav d-flex justify-content-between">
                         <a class="p-2 text-muted" href="#">회원 관리</a>
                         <a class="p-2 text-muted" href="#">책 관리</a>
-                        <a class="p-2 text-muted" href="#">??</a>
+                        <a th:href="@{/admin/goods/create}" class="p-2 text-muted" href="#">책 등록</a>
                         <a class="p-2 text-muted" href="#">???</a>
                     </nav>
                 </div>

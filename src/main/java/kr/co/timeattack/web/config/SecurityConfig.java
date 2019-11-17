@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/create").permitAll()
                 .antMatchers("/test").permitAll()
                 .antMatchers("/goods").permitAll()
+                .antMatchers("/cart").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -40,9 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.POST.name()))
                 .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID");
-//                .and()
-//                .csrf().disable(); // logout을 위해 csrf disable 추가.
+                .deleteCookies("JSESSIONID")
+                .and().csrf().disable();
+// logout을 위해 csrf disable 추가.
     }
 
     @Bean

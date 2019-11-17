@@ -1,0 +1,209 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Book Time</title>
+
+    <th:block layout:fragment="script">
+        <!--        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
+        <script type="text/javascript">
+
+        var cnt = 0;
+
+
+        function addFile() {
+            var div = document.createElement('div');
+            div.className = 'row';
+			if (cnt == 0) {
+		        div.innerHTML = "<br>" + "<input  type='file' name='mainImage' id='mainImage' />";
+				document.getElementById("add_file").appendChild(div)
+			} else {
+			    div.innerHTML = "<br>" + "<input  type='file' name='detailImage" + cnt + "' />";
+                document.getElementById("add_file").appendChild(div)
+			}
+			cnt++;
+		}
+		function addGood() {
+
+			let fileName = document.getElementById("mainImage")
+			console.log(fileName)
+			if (fileName != null && fileName != undefined) {
+			    if(fileName.value == null || fileName.value == undefined || fileName.value == ''){
+			    alert("메인 이미지는 반드시 첨부해야 합니다.");
+			    document.goodForm.submit();
+<!--				return;-->
+			    }else{
+			    document.goodForm.submit();
+			    }
+
+			} else {
+				alert("메인 이미지는 반드시 첨부해야 합니다.");
+				return;
+			}
+
+		}
+
+        </script>
+    </th:block>
+
+
+</head>
+<body>
+
+<form name="goodForm" th:action="@{/admin/create}" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
+        <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                   aria-selected="true">상품정보</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="order-tab" data-toggle="tab" href="#order" role="tab" aria-controls="order"
+                   aria-selected="false">상품목차</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="writer-tab" data-toggle="tab" href="#writer" role="tab" aria-controls="writer"
+                   aria-selected="false">상품저자소개</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="good-tab" data-toggle="tab" href="#good" role="tab" aria-controls="good"
+                   aria-selected="false">상품소개</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="evaluate-tab" data-toggle="tab" href="#evaluate" role="tab"
+                   aria-controls="evaluate"
+                   aria-selected="false">출판사 상품 평가</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image"
+                   aria-selected="false">상품 이미자</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+
+                <div class="form-group">
+                    <label for="goodSort">제품분류</label>
+                    <select id="goodSort" name="goodSort" class="form-control">
+                        <option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷
+                        <option value="디지털 기기">디지털 기기
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="goodTitle">제품이름</label>
+                    <input type="text" class="form-control" id="goodTitle" aria-describedby="goodTitle"
+                           placeholder="제품이름">
+                </div>
+                <div class="form-group">
+                    <label for="goodWriter">저자</label>
+                    <input type="text" class="form-control" id="goodWriter" aria-describedby="goodWriter"
+                           placeholder="저자">
+                </div>
+                <div class="form-group">
+                    <label for="goodPublisher">출판사</label>
+                    <input type="text" class="form-control" id="goodPublisher" aria-describedby="goodPublisher"
+                           placeholder="출판사">
+                </div>
+                <div class="form-group">
+                    <label for="goodPrice">제품정가</label>
+                    <input type="text" class="form-control" id="goodPrice" aria-describedby="goodPrice"
+                           placeholder="제품정가">
+                </div>
+                <div class="form-group">
+                    <label for="goodSalesPrice">제품 판매가격</label>
+                    <input type="text" class="form-control" id="goodSalesPrice" aria-describedby="goodSalesPrice"
+                           placeholder="제품 판매가격">
+                </div>
+                <div class="form-group">
+                    <label for="goodPoint">제품 구매 포인트</label>
+                    <input type="text" class="form-control" id="goodPoint" aria-describedby="goodPoint"
+                           placeholder="제품 구매 포인트">
+                </div>
+                <div class="form-group">
+                    <label for="goodPublishedDate">제품 출판일</label>
+                    <input type="date" class="form-control" id="goodPublishedDate" aria-describedby="goodPublishedDate"
+                           placeholder="제품 출판일">
+                </div>
+                <div class="form-group">
+                    <label for="goodTotalPage">제품 총 페이지</label>
+                    <input type="text" class="form-control" id="goodTotalPage" aria-describedby="goodTotalPage"
+                           placeholder="총 페이지">
+                </div>
+                <div class="form-group">
+                    <label for="goodIsbn">ISBN</label>
+                    <input type="text" class="form-control" id="goodIsbn" aria-describedby="goodIsbn"
+                           placeholder="ISBN">
+                </div>
+                <div class="form-group">
+                    <label for="goodDeliveryPrice">제품 배송비</label>
+                    <input type="text" class="form-control" id="goodDeliveryPrice" aria-describedby="goodDeliveryPrice"
+                           placeholder="제품 배송비">
+                </div>
+                <div class="form-group">
+                    <label for="goodDeliveryDate">제품 도착 예정일</label>
+                    <input type="date" class="form-control" id="goodDeliveryDate" aria-describedby="goodDeliveryDate"
+                           placeholder="제품 도착 예정">
+                </div>
+                <div class="form-group">
+                    <label for="goodStatus">제품종류</label>
+                    <select id="goodStatus" name="goodStatus" class="form-control">
+                        <option value="bestseller">베스트셀러</option>
+                        <option value="steadyseller">스테디셀러</option>
+                        <option value="newbook" selected>신간</option>
+                        <option value="on_sale">판매중</option>
+                        <option value="buy_out">품절</option>
+                        <option value="out_of_print">절판</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="order-tab">
+                <div class="form-group">
+                    <label for="goodContentOrder">책 목차</label>
+                    <textarea class="form-control" id="goodContentOrder" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="writer" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="form-group">
+                    <label for="goodWriterIntro">제품 저자 소개</label>
+                    <textarea class="form-control" id="goodWriterIntro" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="good" role="tabpanel" aria-labelledby="good-tab">
+                <div class="form-group">
+                    <label for="goodIntro">제품 소개</label>
+                    <textarea class="form-control" id="goodIntro" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="evaluate" role="tabpanel" aria-labelledby="evaluate-tab">
+                <div class="form-group">
+                    <label for="goodPublisherDate">출판사 제품 평가</label>
+                    <textarea class="form-control" id="goodPublisherDate" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goodRecommendation">추천</label>
+                    <textarea class="form-control" id="goodRecommendation" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
+                <div class="custom-file">
+                    <input type="button" value="파일추가" onClick="addFile()">
+
+                    <div id="add_file">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" onClick="addGood()">저장</button>
+
+    <th:block th:insert="~{layout/common :: script}"></th:block>
+
+</form>
+</body>
+</html>

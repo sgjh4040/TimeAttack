@@ -12,7 +12,7 @@
     <div class="row mb-2">
 
             <div class="col-md-6" th:each="good: ${goodlist}">
-                <a href="/goods?id=1">
+                <a th:href="@{/goods(id=${good.goodsId})}" href="/goods?id=1">
                 <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary" th:text="${good.goodsSort}"></strong>
@@ -20,7 +20,7 @@
                         <div class="mb-1 text-muted" th:text="${good.goodsPublishedDate}"></div>
                         <p class="card-text mb-auto" th:text="${good.goodsIntro}"></p>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
+                    <div class="col-auto d-block d-lg-block">
                         <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
                     </div>
                 </div>

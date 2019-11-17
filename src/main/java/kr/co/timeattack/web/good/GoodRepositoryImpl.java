@@ -35,16 +35,17 @@ public class GoodRepositoryImpl implements GoodRepository {
 
     @Override
     public GoodModel selectGoodsDetail(int id) {
-        Optional<GoodModel> goodModelOptional = list.stream().filter(x -> x.getGoodsId()==id).findFirst();
-        if(goodModelOptional.isPresent()){
-            System.out.println("모델 존재");
-            GoodModel model = goodModelOptional.get();
-            System.out.println(model.toString());
-            return model;
-        }else{
-            System.out.println("모델 존재하지 않음");
-            return null;
-        }
+        return null;
+//        Optional<GoodModel> goodModelOptional = list.stream().filter(x -> x.getGoodsId()==id).findFirst();
+//        if(goodModelOptional.isPresent()){
+//            System.out.println("모델 존재");
+//            GoodModel model = goodModelOptional.get();
+//            System.out.println(model.toString());
+//            return model;
+//        }else{
+//            System.out.println("모델 존재하지 않음");
+//            return null;
+//        }
     }
 
     @Override

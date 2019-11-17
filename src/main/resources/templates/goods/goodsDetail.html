@@ -5,15 +5,40 @@
     <title>Book Time</title>
 </head>
 <body>
+<link rel="stylesheet" th:href="@{/static/css/goodDetail.css}">
 <div class="container">
     <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
     <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
 
-    <div class="row mb-2">
-        <div  th:text="${good.good.goodsId}"></div>
 
+    <div class="row good-detail" >
+        <div class="col-md-5 order-md-1">
+            <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
+        </div>
+        <div class="col-md-7 order-md-2">
+            <h2 th:text="${good.goodsTitle}" class=""></h2>
+            <p  th:text="${good.goodsContentsOrder}"></p>
+            <p th:text="|정가: ${good.goodsPrice}원|" class="card-text"></p>
+            <p th:text="|판매가: ${good.goodsSalesPrice}원|" class="card-text"></p>
+            <p th:text="|포인트 적립: ${good.goodsPoint}|" class="card-text"></p>
+            <p th:text="|발행일: ${good.goodsPublishedDate}|" class="card-text"></p>
+            <p th:text="|페이지수: ${good.goodsTotalPage}|" class="card-text"></p>
+            <p th:text="|도착예정일: 지금 주문 시 내일 도착 예정|" class="card-text"></p>
+            <p>
+            <span>수량</span>
+            <select style="width: 60px;" id="order_goods_qty">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            </p>
+            <a><button type="button" class="btn btn-outline-danger">장바구니</button></a>
+           <a><button type="button" class="btn btn-outline-danger">구매</button></a>
+            <a><button type="button" class="btn btn-outline-danger">위시 리스트</button></a>
 
-
+        </div>
 
     </div>
 </div>

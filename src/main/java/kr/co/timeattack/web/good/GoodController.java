@@ -30,14 +30,11 @@ public class GoodController {
     @GetMapping("/goods")
     public ModelAndView goodDetail(@RequestParam("id") String goodId, HttpServletRequest request){
 
-        System.out.println("goodId:"+goodId);
         ModelAndView mv = new ModelAndView("goods/goodsDetail");
         HttpSession session=request.getSession();
-        Map goodsMap = goodService.goodsDetail(Integer.parseInt(goodId));
-        System.out.println("goodsMap"+goodsMap);
-        mv.addObject("good",goodsMap);
-        GoodModel goodmodel = (GoodModel) goodsMap.get("good");
-        addGoodsInQuick(goodId,goodmodel,session);
+        GoodDto goodDto = goodService.goodsDetail(Integer.parseInt(goodId));
+        mv.addObject("good",goodDto);
+        addGoodsInQuick(goodId,goodDto,session);
         return mv;
     }
 
@@ -70,7 +67,7 @@ public class GoodController {
 
 
 
-    private void addGoodsInQuick(String goodId, GoodModel goodModel, HttpSession session){
+    private void addGoodsInQuick(String goodId, GoodDto goodDto, HttpSession session){
 
     }
 

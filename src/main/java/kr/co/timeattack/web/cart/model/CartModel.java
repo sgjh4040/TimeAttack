@@ -16,7 +16,7 @@ import java.util.Date;
 public class CartModel {
     private int cartId;
     private int goodId;
-    private int memberId;
+    private Long memberId;
     private int cartGoodqty;
     private Date creDate;
 

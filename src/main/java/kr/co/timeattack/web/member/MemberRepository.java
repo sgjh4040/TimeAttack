@@ -1,17 +1,14 @@
 package kr.co.timeattack.web.member;
 
-import kr.co.timeattack.web.account.model.AccountModel;
 import kr.co.timeattack.web.member.model.MemberModel;
-
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
-public interface MemberRepository {
-    List<MemberModel> list();
-    MemberModel findbyEmail(String email);
+public interface MemberRepository extends PagingAndSortingRepository<MemberModel, Long> {
+    List<MemberModel>  findAll();
+    Optional<MemberModel> findByMemberEmail(String email);
 
-    void create(MemberModel m);
-    void update(MemberModel m);
-    void delete(Long id);
 }

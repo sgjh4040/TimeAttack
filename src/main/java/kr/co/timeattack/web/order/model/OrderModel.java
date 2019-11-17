@@ -1,79 +1,69 @@
 package kr.co.timeattack.web.order.model;
 
 
+import com.sun.istack.NotNull;
+import kr.co.timeattack.web.good.model.GoodModel;
+import kr.co.timeattack.web.member.model.MemberModel;
 import kr.co.timeattack.web.order.dto.OrderDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
+
+import static javax.persistence.FetchType.LAZY;
+
+@Entity
+@Table(name="orders")
+@ToString(exclude = "member")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderModel {
 
-    private int orderSeqNum;
-    private int memberId;
-    private int orderId;
-    private int goodsId;
-    private String goodsTitle;
-    private int goodsSalesPrice;
-    private int totalGoodsPrice;
-    private int cartGoodsQty;
-    private int orderGoodsQty;
-    private String ordererName;
-    private String receiverName;
-    private String receiverHp1;
-    private String receiverHp2;
-    private String receiverTel1;
-    private String receiverTel2;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(fetch = LAZY)
+    @NonNull private MemberModel member;
 
+    @ManyToOne(fetch = LAZY)
+    @NotNull private GoodModel goods;
+
+    @Column(name = "order_goods_qty")
+    private int orderGoodsQty;
+
+    @Column(name = "Orderer_name")
+    private String ordererName;
+
+    @Column(name = "receiver_name")
+    private String receiverName;
+
+    @Column(name = "receiver_hp")
+    private String receiverHp;
+
+    @Column(name = "receiver_tel")
+    private String receiverTel;
+
+    @Column(name = "delivery_address")
     private String deliveryAddress;
+
+    @Column(name = "delivery_message")
     private String deliveryMessage;
-    private String deliveryMethod;
-    private String giftWrapping;
+
+    @Column(name = "pay_method")
     private String payMethod;
+
+    @Column(name = "card_com_name")
     private String cardComName;
+
+    @Column(name = "card_pay_month")
     private String cardPayMonth;
-    private String payOrdererHpnum;
+
+    @Column(name = "delivery_state")
     private String deliveryState;
 
-    private String finalTotalPrice;
+    @Column(name="goods_qty")
     private int goodsQty;
-    private String goodsFileName;
-    private String ordererHp;
 
-    public OrderDto toDto(){
-        return new OrderDto(
-        orderSeqNum,
-        memberId,
-        orderId,
-        goodsId,
-        goodsTitle,
-        goodsSalesPrice,
-        totalGoodsPrice,
-        cartGoodsQty,
-        orderGoodsQty,
-        ordererName,
-        receiverName,
-        receiverHp1,
-        receiverHp2,
-        receiverTel1,
-        receiverTel2,
-        deliveryAddress,
-        deliveryMessage,
-        deliveryMethod,
-        giftWrapping,
-        payMethod,
-        cardComName,
-        cardPayMonth,
-        payOrdererHpnum,
-        deliveryState,
-        finalTotalPrice,
-        goodsQty,
-        goodsFileName,
-        ordererHp
-        );
-    }
+
 }

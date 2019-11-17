@@ -33,11 +33,10 @@ public class GoodService {
         return goodsMap;
     }
 
-    public Map goodsDetail(int goodId) {
-        Map goodsMap = new HashMap();
+    public GoodDto goodsDetail(int goodId) {
         GoodModel goodModel = goodRepository.selectGoodsDetail(goodId);
-        goodsMap.put("good", goodModel);
-        return goodsMap;
+
+        return goodModel.toDto();
     }
 
     public List<GoodDto> list() {

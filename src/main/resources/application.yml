@@ -9,12 +9,28 @@ spring:
       prefix: templates
       suffix: .html
     static-path-pattern: /static/**
+  h2:
+    console:
+      enabled: true
 
-# TODO custom error 설정
-#  autoconfigure:
-#    exclude: org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration
+  datasource:
+    initialization-mode: embedded
 
-# TODO context path 추가 및 thymeleaf에 @{} 설명
+    platform: h2
+    url: jdbc:h2:tcp://localhost:8082,/mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      properties:
+        hibernate:
+          format_sql: true
+
 server:
   port: 8001
   servlet:
@@ -24,6 +40,8 @@ server:
 logging:
   level:
     root: info
-#    org:
-#      springframework:
-#        security: debug
+
+
+decorator:
+  datasource:
+    enabled: true

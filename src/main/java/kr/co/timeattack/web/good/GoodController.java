@@ -24,44 +24,42 @@ public class GoodController {
 
     private GoodService goodService;
 
-
-
     //상품 디테일 페이
     @GetMapping("/goods")
     public ModelAndView goodDetail(@RequestParam("id") String goodId, HttpServletRequest request){
 
         ModelAndView mv = new ModelAndView("goods/goodsDetail");
         HttpSession session=request.getSession();
-        GoodDto goodDto = goodService.goodsDetail(Integer.parseInt(goodId));
+        GoodDto goodDto = goodService.goodsDetail(Long.parseLong(goodId));
         mv.addObject("good",goodDto);
         addGoodsInQuick(goodId,goodDto,session);
         return mv;
     }
 
-    @GetMapping("/keywordSearch")
-    public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword,
-                                              HttpServletRequest request, HttpServletResponse response){
-        response.setContentType("text/html;charset=utf-8");
-        response.setCharacterEncoding("utf-8");
-        if(keyword== null || keyword.equals("")){
-            return null;
-        }
-        keyword = keyword.toUpperCase();
-        List<String> keywordList = goodService.keywordSearch(keyword);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("keyword", keywordList);
-
-        String jsonInfo = jsonObject.toString();
-        return jsonInfo;
-    }
-    @GetMapping("/goodSearch")
-    public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
-                                    HttpServletRequest request, HttpServletResponse response){
-        ModelAndView mv = new ModelAndView("goods/goodsSearch");
-        List<GoodDto> goodsList = goodService.searchGoods(searchWord);
-        mv.addObject("goodsList",goodsList);
-        return mv;
-    }
+//    @GetMapping("/keywordSearch")
+//    public @ResponseBody String keywordSearch(@RequestParam("keyword") String keyword,
+//                                              HttpServletRequest request, HttpServletResponse response){
+//        response.setContentType("text/html;charset=utf-8");
+//        response.setCharacterEncoding("utf-8");
+//        if(keyword== null || keyword.equals("")){
+//            return null;
+//        }
+//        keyword = keyword.toUpperCase();
+//        List<String> keywordList = goodService.keywordSearch(keyword);
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("keyword", keywordList);
+//
+//        String jsonInfo = jsonObject.toString();
+//        return jsonInfo;
+//    }
+//    @GetMapping("/goodSearch")
+//    public ModelAndView searchGoods(@RequestParam("searchWord") String searchWord,
+//                                    HttpServletRequest request, HttpServletResponse response){
+//        ModelAndView mv = new ModelAndView("goods/goodsSearch");
+//        List<GoodDto> goodsList = goodService.searchGoods(searchWord);
+//        mv.addObject("goodsList",goodsList);
+//        return mv;
+//    }
 
 
 

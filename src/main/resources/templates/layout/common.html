@@ -51,17 +51,17 @@
             <div class="nav-scroller py-1 mb-2">
                 <div sec:authorize="isAnonymous()">
                     <nav class="nav d-flex justify-content-between">
-                        <a class="p-2 text-muted" href="#">신간</a>
-                        <a class="p-2 text-muted" href="#">베스트셀러</a>
-                        <a class="p-2 text-muted" href="#">스테디셀러</a>
+                        <a class="p-2 text-muted" href="/newbook">신간</a>
+                        <a class="p-2 text-muted" href="/">베스트셀러</a>
+                        <a class="p-2 text-muted" href="/steadyseller">스테디셀러</a>
                         <a class="p-2 text-muted" href="#">Design</a>
                     </nav>
                 </div>
                 <div sec:authorize="hasRole('USER')">
                     <nav class="nav d-flex justify-content-between">
-                        <a class="p-2 text-muted" href="#">신간</a>
-                        <a class="p-2 text-muted" href="#">베스트셀러</a>
-                        <a class="p-2 text-muted" href="#">스테디셀러</a>
+                        <a class="p-2 text-muted" href="/newbook">신간</a>
+                        <a class="p-2 text-muted" href="/">베스트셀러</a>
+                        <a class="p-2 text-muted" href="/steadyseller">스테디셀러</a>
                         <a class="p-2 text-muted" href="#">Design</a>
                     </nav>
                 </div>

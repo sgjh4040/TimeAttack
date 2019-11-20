@@ -15,11 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class CartDto {
 
-    private int cartId;
-    private int goodId;
+    private Long id;
+    private Long goodId;
     private Long memberId;
     private int cartGoodqty;
-    private Date creDate;
+    private String creDate;
 
-    public CartModel toModel(){return new CartModel(cartId,goodId,memberId,cartGoodqty,creDate);}
 }

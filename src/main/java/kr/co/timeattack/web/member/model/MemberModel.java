@@ -1,6 +1,8 @@
 package kr.co.timeattack.web.member.model;
 
+import kr.co.timeattack.web.cart.model.CartModel;
 import kr.co.timeattack.web.good.model.GoodModel;
+import kr.co.timeattack.web.member.dto.AdminMemberDto;
 import kr.co.timeattack.web.member.dto.MemberDto;
 import kr.co.timeattack.web.order.model.OrderModel;
 import lombok.*;
@@ -22,6 +24,10 @@ import static java.util.stream.Collectors.toSet;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class MemberModel {
+
+    public MemberModel(Long id){
+        this.id = id;
+    }
 
 
     @Id
@@ -62,14 +68,19 @@ public class MemberModel {
     private List<OrderModel> order;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartModel> cart;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RoleModel> roles = new HashSet<>();
 
 
 
 
-    public MemberDto toDto() {
+
+
+    public AdminMemberDto toAdminMemberDto() {
         Set<RoleEnum> roles = this.roles.stream().map(RoleModel::getName).collect(toSet());
-        return new MemberDto(id, memberEmail, memberPassword, memberNickname, snsYn, memberPh, zipCode, address1, address2, memberBirth, memberRegDate, delYn, roles);
+        return new AdminMemberDto(id, memberEmail, memberPassword, memberNickname, snsYn, memberPh, zipCode, address1,address2, memberBirth, memberRegDate, delYn, roles);
     }
 
     public void update(MemberDto dto){

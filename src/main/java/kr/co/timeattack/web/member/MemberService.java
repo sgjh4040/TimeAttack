@@ -1,6 +1,7 @@
 package kr.co.timeattack.web.member;
 
 
+import kr.co.timeattack.web.member.dto.AdminMemberDto;
 import kr.co.timeattack.web.member.dto.MemberDto;
 import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.AllArgsConstructor;
@@ -18,9 +19,9 @@ import java.util.stream.Collectors;
 public class MemberService {
     private MemberRepositoryDelegate memberRepository;
 
-    public List<MemberDto> list(){
+    public List<AdminMemberDto> list(){
         List<MemberModel> list =memberRepository.findAll();
-        return list.stream().map(x -> x.toDto()).collect(Collectors.toList());
+        return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
     }
     @Transactional
     public void create(MemberDto dto){ memberRepository.create(dto);}

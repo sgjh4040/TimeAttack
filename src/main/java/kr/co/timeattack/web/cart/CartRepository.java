@@ -2,17 +2,18 @@ package kr.co.timeattack.web.cart;
 
 import kr.co.timeattack.web.cart.model.CartModel;
 import kr.co.timeattack.web.good.model.GoodModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface CartRepository {
+@Repository
+public interface CartRepository extends JpaRepository<CartModel, Long>, CustomCartRepository {
 
-    public List<CartModel> selectCartList(CartModel m);
-    public List<GoodModel> selectGoodList(List<CartModel> cartList);
-    void insertGoodsInCart(CartModel m);
-    void updateCartGoodsQty(CartModel m);
-    void deleteCartGoods(int cartId );
-    boolean selectCountInCart(CartModel m);
+    List<CartModel> findAll();
+    default void create(CartModel m ) {save(m);}
+    Optional<CartModel> findById(Long id);
 
 
 

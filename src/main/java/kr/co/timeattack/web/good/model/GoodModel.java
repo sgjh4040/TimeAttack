@@ -1,5 +1,6 @@
 package kr.co.timeattack.web.good.model;
 
+import kr.co.timeattack.web.cart.model.CartModel;
 import kr.co.timeattack.web.good.dto.GoodDto;
 import kr.co.timeattack.web.order.model.OrderModel;
 import lombok.*;
@@ -16,6 +17,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodModel {
+
+    public GoodModel(Long id){
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -72,6 +78,9 @@ public class GoodModel {
 
     @OneToMany(mappedBy = "goods", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderModel> order;
+
+    @OneToMany(mappedBy = "goods", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartModel> cart;
 
     public GoodDto toDto() {
         return new GoodDto(

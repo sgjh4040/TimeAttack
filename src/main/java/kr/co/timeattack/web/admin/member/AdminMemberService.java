@@ -1,6 +1,7 @@
 package kr.co.timeattack.web.admin.member;
 
 
+import kr.co.timeattack.web.member.dto.AdminMemberDto;
 import kr.co.timeattack.web.member.dto.MemberDto;
 import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.AllArgsConstructor;
@@ -17,15 +18,15 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class AdminMemberService {
     AdminMemberRepository adminMemberRepository;
-    public List<MemberDto> listMember(HashMap cond){
+    public List<AdminMemberDto> listMember(HashMap cond){
 
         List<MemberModel> list = adminMemberRepository.listMember(cond);
-        return list.stream().map(x -> x.toDto()).collect(Collectors.toList());
+        return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
 
     }
 
-    public MemberDto memberDetail(int memberId){
-        return adminMemberRepository.memberDetail(memberId).toDto();
+    public AdminMemberDto memberDetail(int memberId){
+        return adminMemberRepository.memberDetail(memberId).toAdminMemberDto();
     }
 
     public void modifyMemberInfo(HashMap memberMap){

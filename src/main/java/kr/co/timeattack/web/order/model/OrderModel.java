@@ -9,6 +9,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -26,8 +29,8 @@ public class OrderModel {
     @ManyToOne(fetch = LAZY)
     @NonNull private MemberModel member;
 
-    @ManyToOne(fetch = LAZY)
-    @NotNull private GoodModel goods;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderGoodsModel> orderGood = new ArrayList<>();
 
     @Column(name = "order_goods_qty")
     private int orderGoodsQty;

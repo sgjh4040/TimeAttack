@@ -58,8 +58,8 @@ public class CartRepositoryDelegate extends QuerydslRepositorySupport {
         }
 
     }
-    public Optional<CartModel> findbyId(Long id){
-        return repository.findById(id);
+    public void deleteById(Long id){
+        repository.deleteById(id);
     }
 
 

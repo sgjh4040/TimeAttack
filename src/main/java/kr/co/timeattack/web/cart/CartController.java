@@ -52,7 +52,6 @@ public class CartController {
     //장바구니 등록
     @PostMapping({"/cart/create","/cart/update"})
     public @ResponseBody String createPost(@ModelAttribute("cart") @Valid CartDto dto, Principal principal) {
-
         System.out.println("cart create");
         //유저 email
         String userEmail = principal.getName();
@@ -68,15 +67,12 @@ public class CartController {
 
         }
     }
-
-
-    @PostMapping("/cart/remove")
-    public ModelAndView removeCartGoods() {
-        ModelAndView mav = new ModelAndView();
-        cartService.removeCartGoods('1');
-        mav.setViewName("redirect:/cart");
-        return mav;
+    @GetMapping("/cart/delete")
+    public ModelAndView deleteGet(@RequestParam("id") Long id){
+        cartService.delete(id);
+        return new ModelAndView("/");
     }
+
 
 
 }

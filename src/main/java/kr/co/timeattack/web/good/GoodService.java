@@ -31,7 +31,7 @@ public class GoodService {
         goodsMap.put("newbook", list.stream().map(x -> x.toDto()).collect(Collectors.toList()));
 
         list = goodRepository.findAllGoodByStatus("steadyseller");
-        goodsMap.put("newbook", list.stream().map(x -> x.toDto()).collect(Collectors.toList()));
+        goodsMap.put("steadyseller", list.stream().map(x -> x.toDto()).collect(Collectors.toList()));
 
         return goodsMap;
     }

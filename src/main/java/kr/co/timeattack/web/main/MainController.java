@@ -29,7 +29,7 @@ public class MainController {
     public ModelAndView newbookList(){
         ModelAndView mv = new ModelAndView("/main/newbook");
         Map<String, List<GoodDto>> goodsMap = goodService.listGoods();
-        mv.addObject("goodlist", goodsMap.get("bestseller"));
+        mv.addObject("goodlist", goodsMap.get("newbook"));
 
 
         return mv;

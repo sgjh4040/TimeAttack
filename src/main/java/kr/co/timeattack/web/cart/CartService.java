@@ -74,13 +74,10 @@ public class CartService {
         cartGood.setCart(cart);
         cartGood.setCart(cart);
         cartGoodRepository.save(cartGood);
-
-
-
-
-
-
-
+    }
+    @Transactional
+    public void delete(Long id){
+        cartRepository.deleteById(id);
     }
 
     //장바구니 개수 수정

@@ -76,8 +76,6 @@ public class GoodModel {
     @Column(name = "goods_credate")
     private String goodsCredate;
 
-    @OneToMany(mappedBy = "goods", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderModel> order;
 
 
     public GoodDto toDto() {

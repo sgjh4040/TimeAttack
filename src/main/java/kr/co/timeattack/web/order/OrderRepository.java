@@ -1,17 +1,16 @@
 package kr.co.timeattack.web.order;
 
 import kr.co.timeattack.web.order.model.OrderModel;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface OrderRepository {
-   public List<OrderModel> listMyOrderGoods(int orderId);
+public interface OrderRepository extends PagingAndSortingRepository<OrderModel,Long> {
 
-   public void insertNewOrder(List<OrderModel> orderList);
-
-   public OrderModel findMyOrder(int ordierId);
-
-   public void removeGoodsFromCart(List<OrderModel> myOrderList);
+   List<OrderModel> findAll();
+   default void create(OrderModel m){save(m);}
+   Optional<OrderModel> findById(Long id);
 
 
 }

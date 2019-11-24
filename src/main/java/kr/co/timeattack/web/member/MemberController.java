@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -18,11 +19,12 @@ import javax.validation.Valid;
 public class MemberController {
     private MemberService memberService;
 
-//    @GetMapping("/login")
-//    public ModelAndView member(){
-//        ModelAndView mv = new ModelAndView("login/login");
-//        return mv;
-//    }
+    @GetMapping("/login")
+    public String loginForm(HttpServletRequest req){
+        String referer = req.getHeader("Referer");
+        req.getSession().setAttribute("prevPage",referer);
+        return "login";
+    }
 
     /**
      * 로그인

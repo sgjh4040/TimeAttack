@@ -91,7 +91,7 @@
                             </button>
                         </a>
                     </td>
-                    <td>총 금액</td>
+                    <td th:text="|총 금액:${cart.cartGood.get(0).goods.goodsPrice*cart.cartGood.get(0).goodsQty}원|" >총 금액</td>
                     <td>
                         <button type="button" class="btn btn-success">주문하기</button>
                         <button type="button" class="btn btn-danger">삭제</button>

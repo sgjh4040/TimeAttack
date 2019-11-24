@@ -1,5 +1,6 @@
 package kr.co.timeattack.web.good.model;
 
+import kr.co.timeattack.web.cart.model.CartGoodsModel;
 import kr.co.timeattack.web.cart.model.CartModel;
 import kr.co.timeattack.web.good.dto.GoodDto;
 import kr.co.timeattack.web.order.model.OrderModel;
@@ -14,7 +15,6 @@ import java.util.List;
 @ToString
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class GoodModel {
 
@@ -79,8 +79,6 @@ public class GoodModel {
     @OneToMany(mappedBy = "goods", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderModel> order;
 
-    @OneToMany(mappedBy = "goods", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartModel> cart;
 
     public GoodDto toDto() {
         return new GoodDto(

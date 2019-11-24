@@ -1,36 +1,36 @@
 package kr.co.timeattack.web.cart.model;
 
 
-import com.sun.istack.NotNull;
-import kr.co.timeattack.web.cart.dto.CartDto;
 import kr.co.timeattack.web.good.model.GoodModel;
 import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.*;
+import org.springframework.data.util.Lazy;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "cart")
-@ToString(exclude = "member")
+@Table(name = "cart_goods")
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
-
-public class CartModel {
+public class CartGoodsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = LAZY)
-    private MemberModel member;
+    private CartModel cart;
+    @NonNull
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartGoodsModel> cartGood= new ArrayList<>();;
+    @OneToOne
+    private GoodModel goods;
 
+    @NonNull
+    @Column(name = "goods_qty")
+    private int goodsQty;
 
 }

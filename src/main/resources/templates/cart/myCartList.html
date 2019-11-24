@@ -3,12 +3,50 @@
 <head>
     <th:block th:insert="~{layout/common :: head}"></th:block>
     <title>Book Time</title>
+    <script th:inline="javascript">
+        function modifyCartQty(id,index){
+            console.log('modify click')
+            console.log(id);
+            let cartGoodqty = 0;
+            cartGoodqty=document.getElementsByName('cartGoodsQty')[index].value
+            $.ajax({
+			type : "post",
+			async : false,
+			url : "/cart/create",
+			data : {
+				id:id,
+				cartGoodqty:cartGoodqty
+			},
+			success : function(data, textStatus) {
+				if(data.trim()=='add_success'){
+				alert("수정되었습니다.")
+
+				}else if(data.trim()=='not_login'){
+				    alert("로그인 되어있지 않습니다.")
+				}
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+
+			}
+		});
+        }
+
+
+
+    </script>
 </head>
 <body>
 <link rel="stylesheet" th:href="@{/static/css/goodDetail.css}">
+
+<div th:if="${cartMap != 'nodata'}" th:with="cartList=${cartMap.get('myCartList')}"/>
+</div>
 <div class="container">
     <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
     <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
 
     <table class="table">
         <thead class="thead-dark">
@@ -22,26 +60,52 @@
             <th scope="col">주</th>
         </tr>
         </thead>
-        <tbody>
-        <tr >
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <tbody th:if="${cartMap == 'nodata'}">
+        <div>no data</div>
         </tbody>
+        <tbody th:if="${cartMap != 'nodata'}">
+        <div th:with="cartList=${cartMap.get('myCartList')}">
+            <form name="cartForm">
+                <tr th:each="cart: ${cartList}">
+                    <td>
+                        <input type="checkbox" name="checkedGoods" checked>
+                        <a>
+                            <img width="75" alt=""
+                                 src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg"/>
+                        </a>
+                    </td>
+
+                    <td>
+                        <h2>
+                            <a th:text="${cart.cartGood.get(0).goods.goodsTitle}"></a>
+                        </h2>
+                    </td>
+                    <td th:text="${cart.cartGood.get(0).goods.goodsPrice}"></td>
+                    <td th:text="|${cart.cartGood.get(0).goods.goodsPrice}원(10% 할인)|"></td>
+                    <td>
+                        <input th:value="${cart.cartGood.get(0).goodsQty}" type="text" id="cartGoodsQty" name="cartGoodsQty"
+                               size=3><br>
+                        <a>
+                            <button type="button" th:onclick="|javascript:modifyCartQty('${cart.id}','${cartStat.index}')|"
+                                    class="btn btn-primary">변경
+                            </button>
+                        </a>
+                    </td>
+                    <td>총 금액</td>
+                    <td>
+                        <button type="button" class="btn btn-success">주문하기</button>
+                        <button type="button" class="btn btn-danger">삭제</button>
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <td></td>
+        </tr>
+        </thead>
     </table>
 
 

@@ -32,13 +32,16 @@
     <script th:inline="javascript">
 
 
-            function addCart(goodId) {
+function addCart(goodId) {
+     var orderGoodsqty = document.getElementById("orderGoodsQty");
+
 		$.ajax({
 			type : "post",
 			async : false,
 			url : "/cart/create",
 			data : {
-				goodId:goodId
+				goodId:goodId,
+				cartGoodqty:orderGoodsqty.value
 			},
 			success : function(data, textStatus) {
 				if(data.trim()=='add_success'){
@@ -83,6 +86,8 @@
 </head>
 <body>
 <link rel="stylesheet" th:href="@{/static/css/goodDetail.css}">
+
+
 <div class="container">
     <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
     <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
@@ -103,7 +108,7 @@
             <p th:text="|도착예정일: 지금 주문 시 내일 도착 예정|" class="card-text"></p>
             <p>
                 <span>수량</span>
-                <select style="width: 60px;" id="order_goods_qty">
+                <select style="width: 60px;" id="orderGoodsQty">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -159,8 +164,5 @@
 </body>
 
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous" type="text/javascript"></script>
+
 </html>

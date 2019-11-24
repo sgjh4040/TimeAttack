@@ -35,82 +35,40 @@ public class CartController {
     //장바구니 리스트
     @GetMapping("cart/list")
     public ModelAndView myCartMain(@NonNull HttpServletRequest request,@NonNull Principal principal) {
-        CartDto cartDto = new CartDto();
         String userEmail = principal.getName();
         ModelAndView mv = new ModelAndView("cart/myCartList");
-        HttpSession session = request.getSession();
+//        HttpSession session = request.getSession();
         Long userId = memberRepository.findByMemberEmail(userEmail).get().getId();
         Map<String, List> cartMap = cartService.myCartList(userId);
-        session.setAttribute("cartMap", cartMap);
+//        session.setAttribute("cartMap", cartMap);
+        if (cartMap == null){
+            System.out.println("null");
+            mv.addObject("cartMap","nodata");
+        }else{
+            mv.addObject("cartMap",cartMap);
+        }
         return mv;
     }
-
-
     //장바구니 등록
-    @PostMapping("/cart/create")
-    public @ResponseBody String createPost(@RequestParam("goodId") int goodId, Principal principal) {
+    @PostMapping({"/cart/create","/cart/update"})
+    public @ResponseBody String createPost(@ModelAttribute("cart") @Valid CartDto dto, Principal principal) {
 
         System.out.println("cart create");
-        CartDto cartDto = new CartDto();
         //유저 email
         String userEmail = principal.getName();
         System.out.println("userEmail"+userEmail);
         if(userEmail.equals("") || userEmail==null){
             return "not_login";
-
         }else{
             Long userId = memberRepository.findByMemberEmail(userEmail).get().getId();
-            cartDto.setGoodId(Long.valueOf(goodId));
-            cartDto.setMemberId(userId);
-            cartService.addGoodsInCart(cartDto);
+            ;
+            dto.setMemberId(userId);
+            cartService.addGoodsInCart(dto);
             return "add_success";
 
         }
-
-//        if (bindingResult.hasErrors()) {
-//            ModelAndView mv = new ModelAndView("cart/create");
-//            return mv;
-//        } else {
-//
-//            CartDto cartDto = new CartDto();
-//            boolean isAreadyExist = cartService.findCartGoods(cartDto);
-//
-//            if (isAreadyExist) {
-//                ModelAndView mv = new ModelAndView("cart/create");
-//                return mv;
-//            } else {
-//                cartService.addGoodsInCart(cartDto);
-//                return new ModelAndView("redirect:/cart/list");
-//            }
-//
-//
-//        }
     }
 
-    @PostMapping("/cart/modify")
-    public @ResponseBody
-    String modifyCart(@RequestParam("goodId") int goodId,
-                      @RequestParam("cartGoodqty") int cartGoodqty,Principal principal,
-                      HttpServletRequest request) {
-        String userEmail = principal.getName();
-        Long userId = memberRepository.findByMemberEmail(userEmail).get().getId();
-
-        CartDto cartDto = new CartDto();
-        cartDto.setGoodId(Long.valueOf(goodId));
-        cartDto.setMemberId(userId);
-        cartDto.setCartGoodqty(cartGoodqty);
-        boolean result = cartService.modifyCartQty(cartDto);
-
-        if(result){
-            return "modify_succes";
-        }else{
-            return "modify_failed";
-        }
-
-
-
-
-    }
 
     @PostMapping("/cart/remove")
     public ModelAndView removeCartGoods() {

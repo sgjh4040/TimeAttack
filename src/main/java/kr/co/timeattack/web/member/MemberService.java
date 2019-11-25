@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +24,12 @@ public class MemberService {
         List<MemberModel> list =memberRepository.findAll();
         return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
     }
+
+    public MemberModel findByEmail(String email){
+        return memberRepository.findByEmail(email);
+
+    }
+
     @Transactional
     public void create(MemberDto dto){ memberRepository.create(dto);}
 

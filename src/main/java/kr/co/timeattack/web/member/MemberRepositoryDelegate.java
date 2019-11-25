@@ -41,4 +41,8 @@ public class MemberRepositoryDelegate extends QuerydslRepositorySupport {
         repository.deleteById(id);
     }
 
+    public MemberModel findByEmail(String email){
+        return repository.findByMemberEmail(email).orElseThrow(() -> new RuntimeException("사용자가 없습니다."));
+    }
+
 }

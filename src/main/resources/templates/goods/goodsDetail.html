@@ -77,10 +77,6 @@ function addCart(goodId) {
 				jQuery('#layer').attr('style', 'visibility:hidden');
 			}
 		}
-
-
-
-
     </script>
 
 
@@ -93,7 +89,7 @@ function addCart(goodId) {
     <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
     <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
 
-
+<form th:action="@{/order/create}" method="post">
     <div class="row good-detail">
         <div class="col-md-5 order-md-1">
             <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
@@ -120,7 +116,7 @@ function addCart(goodId) {
             <a th:onclick="|javascript:addCart('${good.goodsId}')|">
                 <button type="button" class="btn btn-outline-danger">장바구니</button>
             </a>
-            <a>
+            <a th:href="@{/order(id=${good.goodsId})}">
                 <button type="button" class="btn btn-outline-danger">구매</button>
             </a>
             <a>
@@ -159,6 +155,7 @@ function addCart(goodId) {
             </div>
         </div>
     </div>
+</form>
 </div>
 
 <th:block th:insert="~{layout/common :: script}"></th:block>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{layout/common :: head}"></th:block>
+    <title>Book Time</title>
+    <style>
+        #layer {
+            z-index: 2;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+        }
+
+        #popup {
+            z-index: 3;
+            position: fixed;
+            text-align: center;
+            left: 50%;
+            top: 45%;
+            width: 300px;
+            height: 200px;
+            background-color: #ccffff;
+            border: 3px solid #87cb42;
+        }
+
+        #close {
+            z-index: 4;
+            float: right;
+        }
+    </style>
+    <script th:inline="javascript">
+        //금액 포매팅
+        function moneyFormat(num){
+            return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(num)+"원";
+        }
+
+        function orderGoods() {
+            let orderGoodsqty = document.getElementById("orderGoodsQty");
+            // if (orderGoodsqty != ""){
+            //     location.href = `/order?id=${orderGoodsqty}orderGoodsqty=${orderGoodsqty}`
+            // }
+            let formObject = document.createElement("form");
+            let goodIdInput = document.createElement("input");
+            let goodQtyInput = document.createElement("input");
+            goodIdInput.name = "goodId"
+            goodQtyInput.name = "orderGoodsqty"
+
+            goodIdInput.value = orderGoodsqty.textContent;
+
+
+        }
+
+
+        function addCart(goodId) {
+            const orderGoodsqty = document.getElementById("orderGoodsQty");
+
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "/cart/create",
+                data: {
+                    goodId: goodId,
+                    cartGoodqty: orderGoodsqty.value
+                },
+                success: function (data, textStatus) {
+                    if (data.trim() == 'add_success') {
+                        alert("장바구니에 등록되었습니다.")
+                        imagePopup('open', '.layer01');
+                    } else if (data.trim() == 'already_existed') {
+                        alert("이미 카트에 등록된 상품입니다.");
+                    } else if (data.trim() == 'not_login') {
+                        alert("로그인 되어있지 않습니다.")
+                    }
+                },
+                error: function (data, textStatus) {
+                    alert("에러가 발생했습니다." + data);
+                },
+                complete: function (data, textStatus) {
+                    console.log(data);
+
+                }
+            });
+        }
+
+        function imagePopup(type) {
+            if (type == 'open') {
+                // 팝업창을 연다.
+                jQuery('#layer').attr('style', 'visibility:visible');
+
+                // 페이지를 가리기위한 레이어 영역의 높이를 페이지 전체의 높이와 같게 한다.
+                jQuery('#layer').height(jQuery(document).height());
+            } else if (type == 'close') {
+
+                // 팝업창을 닫는다.
+                jQuery('#layer').attr('style', 'visibility:hidden');
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+<link rel="stylesheet" th:href="@{/static/css/goodDetail.css}">
+
+
+<div class="container">
+    <th:block th:insert="~{layout/common :: header}" th:remove="tag"></th:block>
+    <th:block th:insert="~{layout/common :: nav}" th:remove="tag"></th:block>
+
+    <div class="row good-detail">
+        <div class="col-md-5 order-md-1">
+            <img src="http://image.kyobobook.co.kr/images/book/large/044/l4811910310044.jpg">
+        </div>
+        <div class="col-md-7 order-md-2">
+            <h2 th:text="${good.goodsTitle}" class=""></h2>
+            <p th:text="${good.goodsContentsOrder}"></p>
+            <p th:text="|정가: ${good.goodsPrice}원|" class="card-text"></p>
+            <p th:text="|판매가: ${good.goodsSalesPrice}원|" class="card-text"></p>
+            <p th:text="|포인트 적립: ${good.goodsPoint}|" class="card-text"></p>
+            <p th:text="|발행일: ${good.goodsPublishedDate}|" class="card-text"></p>
+            <p th:text="|페이지수: ${good.goodsTotalPage}|" class="card-text"></p>
+            <p th:text="|도착예정일: 지금 주문 시 내일 도착 예정|" class="card-text"></p>
+            <p>
+                <span>수량</span>
+                <select style="width: 60px;" id="orderGoodsQty">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </p>
+            <a th:onclick="|javascript:addCart('${good.goodsId}')|">
+                <button type="button" class="btn btn-outline-danger">장바구니</button>
+            </a>
+            <a th:href="@{/order(id=${good.goodsId})}">
+                <button type="button" class="btn btn-outline-danger">구매</button>
+            </a>
+            <a>
+                <button type="button" class="btn btn-outline-danger">위시 리스트</button>
+            </a>
+
+        </div>
+
+    </div>
+    <div id="layer" style="visibility: hidden">
+        <!-- visibility:hidden 으로 설정하여 해당 div안의 모든것들을 가려둔다. -->
+        <div id="popup">
+            <!-- 팝업창 닫기 버튼 -->
+            <a href="javascript:" onClick="javascript:imagePopup('close', '.layer01');"> <img
+                    src="${contextPath}/resources/image/close.png" id="close"/>
+            </a> <br/>
+            <font size="12" id="contents">장바구니에 담았습니다.</font><br>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="~{layout/common :: script}"></th:block>
+</body>
+
+
+</html>

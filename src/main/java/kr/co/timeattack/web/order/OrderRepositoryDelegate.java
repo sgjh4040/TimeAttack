@@ -13,4 +13,13 @@ public class OrderRepositoryDelegate extends QuerydslRepositorySupport {
         super(OrderModel.class);
         this.repository = repository;
     }
+
+    public Long save(OrderModel m){
+        OrderModel returnedModel = repository.save(m);
+        return returnedModel.getId();
+    }
+
+    public void deleteById(Long id){
+        repository.deleteById(id);
+    }
 }

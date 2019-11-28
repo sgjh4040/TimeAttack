@@ -2,45 +2,32 @@ package kr.co.timeattack.web.order.dto;
 
 
 import kr.co.timeattack.web.order.model.OrderModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto {
     Long id;
-    private int memberId;
-    private int goodsId;
-    private String goodsTitle;
-    private int goodsSalesPrice;
-    private int totalGoodsPrice;
-    private int cartGoodsQty;
+    private Long memberId;
+    private Long goodsId;
     private int orderGoodsQty;
     private String ordererName;
     private String receiverName;
-    private String receiverHp1;
-    private String receiverHp2;
-    private String receiverTel1;
-    private String receiverTel2;
-
-    private String deliveryAddress;
+    private String receiverHp;
+    private String receiverTel;
+    private String postcode;
+    private String address;
+    private String detailaddress;
+    private String extraaddress;
     private String deliveryMessage;
-    private String deliveryMethod;
-    private String giftWrapping;
     private String payMethod;
     private String cardComName;
     private String cardPayMonth;
-    private String payOrdererHpnum;
     private String deliveryState;
-
-    private String finalTotalPrice;
-    private int goodsQty;
-    private String goodsFileName;
-    private String ordererHp;
+    private String payOrderHp;
 
 
 }

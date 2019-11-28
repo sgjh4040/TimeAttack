@@ -14,34 +14,16 @@
                 <span class="text-muted">Your cart</span>
                 <span class="badge bg-secondary rounded-pill">3</span>
             </h4>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-sm">
+            <ul  class="list-group mb-3">
+                <li th:each="good : ${orderList}" class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <img style="max-width: 20px;" src="https://cdn4.iconfinder.com/data/icons/contact-us-19/48/35-512.png">
+                    </div>
                     <div>
                         <h6 class="my-0">Product name</h6>
-                        <small class="text-muted">Brief description</small>
+                        <small th:text="${good.goodTitle}" lass="text-muted"></small>
                     </div>
-                    <span class="text-muted">$12</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div>
-                        <h6 class="my-0">Second product</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">$8</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div>
-                        <h6 class="my-0">Third item</h6>
-                        <small class="text-muted">Brief description</small>
-                    </div>
-                    <span class="text-muted">$5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Promo code</h6>
-                        <small>EXAMPLECODE</small>
-                    </div>
-                    <span class="text-success">-$5</span>
+                    <span th:text="|${good.goodSalesPrice}X${good.orderGoodsqty} |" class="text-muted"></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (USD)</span>
@@ -49,89 +31,100 @@
                 </li>
             </ul>
 
-            <form class="card p-2">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Promo code">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                    </div>
-                </div>
-            </form>
         </div>
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
+            <h4 class="mb-3">주문 정보</h4>
+            <form th:action="@{/order}" method="post" class="needs-validation" novalidate>
 
                 <div class="mb-3">
-                    <label for="orderName">이름</label>
-                    <input type="text" class="form-control" id="orderName" placeholder="이름">
+                    <label for="ordererName">주문자</label>
+                    <input type="text" class="form-control" id="ordererName" name="ordererName" placeholder="주문자">
                 </div>
+
+
+                <div class="mb-3">
+                    <label for="receiverName">받으시는 분</label>
+                    <input type="text" class="form-control" id="receiverName" name="receiverName" placeholder="받는분">
+                </div>
+
+                <div class="mb-3">
+                    <label for="receiverTel">전화번호</label>
+                    <input type="text" class="form-control" id="receiverTel" name="receiverTel" placeholder="핸드폰 번호">
+                </div>
+
+                <div class="mb-3">
+                    <label for="receiverHp">폰번호</label>
+                    <input type="text" class="form-control" id="receiverHp" name="receiverHp" placeholder="핸드폰 번호">
+                </div>
+
+
+                <input type="text" id="sample6_postcode" name="postcode" placeholder="우편번호">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="sample6_address" name="address" placeholder="주소"><br>
+                <input type="text" id="sample6_detailAddress" name="detailaddress" placeholder="상세주소">
+                <input type="text" id="sample6_extraAddress" name="extraaddress" placeholder="참고항목">
+
+                <div class="mb-3">
+                    <label for="deliveryMessage">요청사항(코멘트)</label>
+                    <input type="text" class="form-control" id="deliveryMessage" name="deliveryMessage"
+                           placeholder="코멘트" required>
+                </div>
+
+                <div class="d-block my-3">
+
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="payMethod" value="credit" type="radio" class="custom-control-input"
+                               checked
+                               required>
+                        <label class="custom-control-label" for="credit">카드</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="bank" name="payMethod" value="bank" type="radio" class="custom-control-input"
+                               required>
+                        <label class="custom-control-label" for="bank">무통장 입금</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="phone" name="payMethod" value="phone" type="radio" class="custom-control-input"
+                               required>
+                        <label class="custom-control-label" for="phone">폰 결제</label>
+                    </div>
+                </div>
+                <div class="d-block my-3">
+                    <div class="form-group">
+                        <label for="cardComName">카드선택</label>
+                        <select id="cardComName" name="cardComName" class="form-control">
+                            <option value="shinhan" selected>신한
+                            <option value="woori">우리
+                        </select>
+                    </div>
+                </div>
+                <div class="d-block my-3">
+                    <div class="form-group">
+                        <label for="cardPayMonth">할부 기간</label>
+                        <select id="cardPayMonth" name="cardPayMonth" class="form-control">
+                            <option value="1" selected>일시불
+                            <option value="3">3
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="payOrderHp">결재 번호</label>
+                    <input type="text" class="form-control" id="payOrderHp" name="payOrderHp" placeholder="결 번호">
+                </div>
+
 
                 <div class="mb-3">
                     <label for="orderPh">Email <span class="text-muted">(Optional)</span></label>
                     <input type="text" class="form-control" id="orderPh" placeholder="전화번호">
                 </div>
-                <input type="text" id="sample6_postcode" placeholder="우편번호">
-                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="sample6_address" placeholder="주소"><br>
-                <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                <input type="text" id="sample6_extraAddress" placeholder="참고항목">
 
-                <div class="mb-3">
-                    <label for="orderComment">요청사항(코멘트)</label>
-                    <input type="text" class="form-control" id="orderComment" placeholder="코멘트" required>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label for="country">Country</label>
-                        <select class="custom-select d-block w-100" id="country" required>
-                            <option value="">Choose...</option>
-                            <option>United States</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required>
-                            <option value="">Choose...</option>
-                            <option>California</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
-                    </div>
-                </div>
 
                 <hr class="mb-4">
 
                 <h4 class="mb-3">Payment</h4>
 
-                <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked
-                               required>
-                        <label class="custom-control-label" for="credit">Credit card</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="debit">Debit card</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="paypal">PayPal</label>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="cc-name">Name on card</label>
@@ -166,7 +159,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">주문하기</button>
             </form>
         </div>
     </div>
@@ -229,4 +222,6 @@
             }
         }).open();
     }
+
+
 </script>

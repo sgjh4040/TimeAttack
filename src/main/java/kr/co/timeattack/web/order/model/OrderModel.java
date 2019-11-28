@@ -23,6 +23,7 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class OrderModel {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,8 +48,11 @@ public class OrderModel {
     @Column(name = "receiver_tel")
     private String receiverTel;
 
-    @Column(name = "delivery_address")
-    private String deliveryAddress;
+    @Column(name = "delivery_address1")
+    private String deliveryAddress1;
+
+    @Column(name = "delivery_address2")
+    private String deliveryAddress2;
 
     @Column(name = "delivery_message")
     private String deliveryMessage;
@@ -65,8 +69,8 @@ public class OrderModel {
     @Column(name = "delivery_state")
     private String deliveryState;
 
-    @Column(name="goods_qty")
-    private int goodsQty;
+    @Column(name = "pay_order_hp")
+    private String payOrderHp;
 
 
 }

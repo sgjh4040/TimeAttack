@@ -58,10 +58,10 @@ public class CartService {
         Long memberId = dto.getMemberId();
         int orderGoodsQty = dto.getCartGoodqty();
         Long goodId = dto.getGoodId();
-        MemberModel order = new MemberModel(memberId);
+        MemberModel orderer = new MemberModel(memberId);
 
         CartModel cart = new CartModel();
-        cart.setMember(order);
+        cart.setMember(orderer);
         cart.setId(dto.getId());
         Long newCartId = cartRepository.save(cart);
         cart.setId(newCartId);

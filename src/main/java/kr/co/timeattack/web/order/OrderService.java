@@ -1,6 +1,8 @@
 package kr.co.timeattack.web.order;
 
 
+import kr.co.timeattack.web.good.model.GoodModel;
+import kr.co.timeattack.web.member.model.MemberModel;
 import kr.co.timeattack.web.order.dto.OrderDto;
 import kr.co.timeattack.web.order.model.OrderModel;
 import org.springframework.stereotype.Service;
@@ -11,21 +13,16 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
 
-    private OrderRepository orderRepository;
+    private OrderRepositoryDelegate orderRepository;
 
-    public List<OrderDto> listMyOrderGoods(int orderId){
-//        List<OrderModel> list = orderRepository.listMyOrderGoods(orderId);
-//        return list.stream().map(x-> x.toDto()).collect(Collectors.toList());
-        return null;
+
+    public void addOrder(OrderDto dto){
+        Long memberId = dto.getMemberId();
+        int orderGoodsQty = dto.getOrderGoodsQty();
+        Long goodId = dto.getGoodsId();
+
+        MemberModel orderer = new MemberModel(memberId);
     }
 
-    public void addNewOrder(List<OrderDto> myOrderList){
-//        orderRepository.insertNewOrder(myOrderList.stream().map(x-> x.toModel()).collect(Collectors.toList()));
-
-    }
-    public OrderDto findMyOrder(int orderId){
-        return null;
-//        return orderRepository.findMyOrder(orderId).toDto();
-    }
 
 }

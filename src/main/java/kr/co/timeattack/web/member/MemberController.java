@@ -1,8 +1,8 @@
 package kr.co.timeattack.web.member;
 
 import kr.co.timeattack.web.member.dto.MemberDto;
+import kr.co.timeattack.web.member.model.MemberModel;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @AllArgsConstructor
@@ -26,26 +27,14 @@ public class MemberController {
         return "login";
     }
 
-    /**
-     * 로그인
-     * @param id
-     * **/
-//    @PostMapping("/login")
-//    public ModelAndView login(Long id){
-//        ModelAndView mv =new ModelAndView("redirect:/main");
-//        memberService.login(id);
-//        return mv;
-//    }
-    /**
-     *
-     * **/
+
     @GetMapping("/member/create")
     public ModelAndView register(Model m){
         ModelAndView mv = new ModelAndView("member/create");
         m.addAttribute("member", new MemberDto());
         return mv;
     }
-    @PostMapping("member/create")
+    @PostMapping("/member/create")
     public ModelAndView createPost(@ModelAttribute("member") @Valid MemberDto dto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             ModelAndView mv = new ModelAndView("member/create");
@@ -55,7 +44,15 @@ public class MemberController {
             memberService.create(dto);
             return new ModelAndView("redirect:/");
         }
+    }
 
+    @GetMapping("/mypage/mydetail")
+    public ModelAndView myDetailInfo(Principal principal){
+        ModelAndView mv = new ModelAndView("mypage/myDetailInfo");
+        String memberEmail = principal.getName();
 
+        MemberModel member = memberService.findByEmail(memberEmail);
+        mv.addObject("member",member);
+        return mv;
     }
 }

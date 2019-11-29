@@ -20,10 +20,6 @@ import java.util.stream.Collectors;
 public class MemberService {
     private MemberRepositoryDelegate memberRepository;
 
-    public List<AdminMemberDto> list(){
-        List<MemberModel> list =memberRepository.findAll();
-        return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
-    }
 
     public MemberModel findByEmail(String email){
         return memberRepository.findByEmail(email);

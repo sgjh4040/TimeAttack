@@ -1,10 +1,7 @@
 package kr.co.timeattack.web.order.model;
 
 
-import com.sun.istack.NotNull;
-import kr.co.timeattack.web.good.model.GoodModel;
 import kr.co.timeattack.web.member.model.MemberModel;
-import kr.co.timeattack.web.order.dto.OrderDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +19,25 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderModel {
+    public OrderModel(String ordererName,String receiverName,String receiverHp,String receiverTel,String address, String detailaddress,String postcode,String deliveryMessage, String payMethod,String cardComName,String cardPayMonth,String deliveryState,String payOrderHp){
+        this.ordererName = ordererName;
+        this.receiverName = receiverName;
+        this.receiverHp = receiverHp;
+        this.receiverTel = receiverTel;
+        this.address = address;
+        this.detailaddress = detailaddress;
+        this.postcode = postcode;
+        this.deliveryMessage =deliveryMessage;
+        this.payMethod = payMethod;
+        this.cardComName =cardComName;
+        this.cardPayMonth =cardPayMonth;
+        this.deliveryState =deliveryState;
+        this.payOrderHp =payOrderHp;
+
+
+
+
+    }
 
 
     @Id
@@ -33,8 +49,7 @@ public class OrderModel {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderGoodsModel> orderGood = new ArrayList<>();
 
-    @Column(name = "order_goods_qty")
-    private int orderGoodsQty;
+
 
     @Column(name = "Orderer_name")
     private String ordererName;
@@ -48,11 +63,14 @@ public class OrderModel {
     @Column(name = "receiver_tel")
     private String receiverTel;
 
-    @Column(name = "delivery_address1")
-    private String deliveryAddress1;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "delivery_address2")
-    private String deliveryAddress2;
+    @Column(name = "detail_address")
+    private String detailaddress;
+
+    @Column(name = "postcode")
+    private String postcode;
 
     @Column(name = "delivery_message")
     private String deliveryMessage;
@@ -71,6 +89,8 @@ public class OrderModel {
 
     @Column(name = "pay_order_hp")
     private String payOrderHp;
+
+
 
 
 }

@@ -14,6 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class OrderGoodsModel {
 
     @Id

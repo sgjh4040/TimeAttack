@@ -19,14 +19,16 @@ import java.util.stream.Collectors;
 public class AdminMemberService {
     AdminMemberRepository adminMemberRepository;
     public List<AdminMemberDto> listMember(HashMap cond){
-
-        List<MemberModel> list = adminMemberRepository.listMember(cond);
-        return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
+//
+//        List<MemberModel> list = adminMemberRepository.listMember(cond);
+//        return list.stream().map(x -> x.toAdminMemberDto()).collect(Collectors.toList());
+        return null;
 
     }
 
     public AdminMemberDto memberDetail(int memberId){
-        return adminMemberRepository.memberDetail(memberId).toAdminMemberDto();
+//        return adminMemberRepository.memberDetail(memberId).toAdminMemberDto();
+        return  null;
     }
 
     public void modifyMemberInfo(HashMap memberMap){

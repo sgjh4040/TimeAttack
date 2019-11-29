@@ -78,11 +78,6 @@ public class MemberModel {
 
 
 
-    public AdminMemberDto toAdminMemberDto() {
-        Set<RoleEnum> roles = this.roles.stream().map(RoleModel::getName).collect(toSet());
-        return new AdminMemberDto(id, memberEmail, memberPassword, memberNickname, snsYn, memberPh, zipCode, address1,address2, memberBirth, memberRegDate, delYn, roles);
-    }
-
     public void update(MemberDto dto){
 
     }

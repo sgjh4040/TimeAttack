@@ -9,11 +9,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
-    Long id;
-    private Long memberId;
-    private Long goodsId;
-    private int orderGoodsQty;
+public class OrdererDto {
     private String ordererName;
     private String receiverName;
     private String receiverHp;

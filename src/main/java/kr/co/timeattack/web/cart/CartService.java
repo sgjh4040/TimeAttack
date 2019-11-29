@@ -72,7 +72,6 @@ public class CartService {
         cartGood.setGoodsQty(orderGoodsQty);
         cartGood.setGoods(good);
         cartGood.setCart(cart);
-        cartGood.setCart(cart);
         cartGoodRepository.save(cartGood);
     }
     @Transactional
